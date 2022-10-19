@@ -1,7 +1,9 @@
 # Mom-is-a-canonball
  Idea: Un plataformero basado en las físicas de Unity.
+ 
  Historia: Una planta rodadora que vivía tranquilamente con sus pimpollos hasta que fueron secuestrados por LOS HERVIVOROS.
  Tendra que abandonar todas las comodidades de su hogar para darse una travesía en el rescate de sus hijos.
+ 
  Documentacion:
  -No pude solucionar que el personaje se mueva con las plataformas.
  -Por alguna razón hay un bug que de la nada el salto es el doble de alto (por desgracia ocurre a menudo)
