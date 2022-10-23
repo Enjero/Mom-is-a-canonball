@@ -6,6 +6,7 @@ public class Plataforma_Mov : MonoBehaviour
 {
     [SerializeField] Vector3 posicion;
     [SerializeField] accion reaccion;
+    [SerializeField] float rayo = 0.5f;
     Vector3 rangoB;
     [Range(0.2f,10)]
     [SerializeField] float rango;
@@ -20,6 +21,18 @@ public class Plataforma_Mov : MonoBehaviour
         if (reaccion == accion.movNegativo && distancia < 0.2f)
         {
             reaccion = accion.movPositivo;
+        }
+    }
+    void playerDetected()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position,transform.up,out hit, rayo))
+        {
+            if (hit.transform.tag == "Player")
+            {
+                Debug.Log("Jugador tocado");
+                //acá iría el metodo que mueve al jugador con la plataforma si supiera cómo indicarselo
+            }
         }
     }
     /*[SerializeField] Vector3 giro;
@@ -65,7 +78,7 @@ public class Plataforma_Mov : MonoBehaviour
                 transform.Translate(-posicion * Time.deltaTime);
                 break;
         }
-
+        playerDetected();
         /*rotado();
         switch (reaccion2)
         {

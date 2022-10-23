@@ -5,19 +5,7 @@ using UnityEngine;
 public class ControllerPlayer : MonoBehaviour
 {
     //Player
-    Rigidbody jugador;
-    public static ControllerPlayer instancia;
-    private void Awake()
-    {
-        if (instancia == null)
-        {
-            ControllerPlayer.instancia = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    public Rigidbody jugador;
     //Movimiento
     float hor;
     float ver;
@@ -73,6 +61,13 @@ public class ControllerPlayer : MonoBehaviour
                 vectirijillo = collision.transform.up;
                 jugador.AddForceAtPosition(vectirijillo*fuerzaSalto,collision.transform.position ,ForceMode.Impulse);
             }
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.transform.gameObject.tag == "SobreSuelo")
+        {
+
         }
     }
 }
