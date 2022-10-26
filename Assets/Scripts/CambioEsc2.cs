@@ -32,6 +32,7 @@ public class CambioEsc2 : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            Sustaine.instancia.levelName = "Escena 2";
             cargarEscena2();
         }
     }

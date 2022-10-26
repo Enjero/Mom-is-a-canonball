@@ -6,12 +6,12 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     Animator transitionAnimation;
-    public GameObject pasoNivel2;
     [SerializeField] float transitionTime = 1f; //tiempo que dura la transicion.
     public void trans() => transitionAnimation.SetTrigger("StartTransition");
     public void cargarEscena1()
     {
         trans();
+        Sustaine.instancia.levelName = "Escena 1";
         Invoke("escena1", transitionTime);
     }
     void escena1()
@@ -27,6 +27,7 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         transitionAnimation = GetComponentInChildren<Animator>();
+        Sustaine.instancia.levelName = "Main Menu";
     }
     void Update()
     {
