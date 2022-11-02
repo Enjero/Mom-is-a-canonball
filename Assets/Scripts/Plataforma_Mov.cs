@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Plataforma_Mov : MonoBehaviour
 {
+    Rigidbody platamorma;
     [SerializeField] Vector3 posicion;
     [SerializeField] accion reaccion;
     [SerializeField] float rayo = 0.5f;
@@ -63,7 +64,7 @@ public class Plataforma_Mov : MonoBehaviour
     {
         rangoB = transform.position;
         //giroB = transform.rotation;
-        
+        platamorma = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -72,10 +73,10 @@ public class Plataforma_Mov : MonoBehaviour
         switch (reaccion)
         {
             case accion.movPositivo:
-                transform.Translate(posicion * Time.deltaTime);
+                platamorma.AddForce(posicion*1000 * Time.deltaTime);
                 break;
             case accion.movNegativo:
-                transform.Translate(-posicion * Time.deltaTime);
+                platamorma.AddForce(-posicion*1000 * Time.deltaTime);
                 break;
         }
         playerDetected();

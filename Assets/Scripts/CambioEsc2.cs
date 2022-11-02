@@ -32,7 +32,7 @@ public class CambioEsc2 : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Sustaine.instancia.levelName = "Escena 2";
+            Sustaine.instancia.levelName = "Escena 2"; //Debe estar como comentario si se empieza el nv sin tener el componente "Sustaine"
             cargarEscena2();
         }
     }
