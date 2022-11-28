@@ -5,11 +5,11 @@ using UnityEngine;
 public class Plataforma_Mov : MonoBehaviour
 {
     Rigidbody platamorma;
+    public GameObject jugador;
     [SerializeField] Vector3 posicion;
     [SerializeField] accion reaccion;
-    [SerializeField] float rayo = 0.5f;
     Vector3 rangoB;
-    [Range(0.2f,10)]
+    [Range(0.2f,50)]
     [SerializeField] float rango;
     float distancia;
     void traslado()
@@ -24,71 +24,42 @@ public class Plataforma_Mov : MonoBehaviour
             reaccion = accion.movPositivo;
         }
     }
-    void playerDetected()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position,transform.up,out hit, rayo))
-        {
-            if (hit.transform.tag == "Player")
-            {
-                Debug.Log("Jugador tocado");
-                //acá iría el metodo que mueve al jugador con la plataforma si supiera cómo indicarselo
-            }
-        }
-    }
-    /*[SerializeField] Vector3 giro;
-    Quaternion giroB;
-    [SerializeField] accion2 reaccion2;
-    [Range(0, 5)]
-    [SerializeField] float rotacionVel;
-    [SerializeField] float angulo;
-    void rotado()
-    {
-        if (giroB == new Quaternion(angulo,angulo,angulo,angulo) && reaccion2 == accion2.giroPos)
-        {
-            reaccion2 = accion2.giroNeg;
-            //angulo = -angulo;
-        }
-    }*/
     enum accion
     {
         movPositivo,
         movNegativo
     };
-    /*enum accion2
-    {
-        giroPos,
-        giroNeg
-    };*/
     void Start()
     {
         rangoB = transform.position;
-        //giroB = transform.rotation;
         platamorma = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         traslado();
-        switch (reaccion)
+            switch (reaccion)
+            {
+                case accion.movPositivo:
+                    transform.Translate(posicion * Time.deltaTime);
+                    break;
+                case accion.movNegativo:
+                    transform.Translate(-posicion * Time.deltaTime);
+                    break;
+            }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
         {
-            case accion.movPositivo:
-                platamorma.AddForce(posicion*1000 * Time.deltaTime);
-                break;
-            case accion.movNegativo:
-                platamorma.AddForce(-posicion*1000 * Time.deltaTime);
-                break;
+            jugador.gameObject.transform.SetParent(transform);
         }
-        playerDetected();
-        /*rotado();
-        switch (reaccion2)
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
         {
-            case accion2.giroPos:
-                transform.Rotate(giro, rotacionVel);
-                break;
-            case accion2.giroNeg:
-                transform.Rotate(giro, -rotacionVel);
-                break;
-        }*/
+            jugador.gameObject.transform.SetParent(null);
+        }
     }
 }

@@ -14,12 +14,6 @@ public class TextTutorial : MonoBehaviour
     [SerializeField] GameObject texto5;
     [SerializeField] GameObject saltos;
     public int text = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
-        tuto = false;
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -57,10 +51,11 @@ public class TextTutorial : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.tag == "Player" && tuto == false)
+        if (collision.gameObject.CompareTag ("Player") && tuto == false)
         {
             Time.timeScale = 0;
             texto.SetActive(true);
+            tuto = false;
         }
         
     }

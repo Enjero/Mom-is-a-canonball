@@ -54,9 +54,9 @@ public class ControllerPlayer : MonoBehaviour
     }
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.transform.gameObject.tag == "Suelo" && (collision.transform.position.y - transform.position.y) <= 0.5f)
+        if (collision.transform.gameObject.tag == "Suelo" /*&& (collision.transform.position.y - transform.position.y) <= 0.5f*/)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space))
             {
                 vectirijillo = collision.transform.up;
                 jugador.AddForceAtPosition(vectirijillo*fuerzaSalto,collision.transform.position ,ForceMode.Impulse);
