@@ -5,10 +5,11 @@ using UnityEngine;
 public class Caida : MonoBehaviour
 {
     [SerializeField] GameObject jugador;
+    [SerializeField] GameObject point;
     Vector3 respawn;
     void Start()
     {
-        respawn = jugador.transform.position;
+        respawn = point.transform.position;
     }
 
     // Update is called once per frame

@@ -6,6 +6,7 @@ public class Plataforma_Mov2 : MonoBehaviour
 {
     Rigidbody platamorma;
     public GameObject jugador;
+    public GameObject jugador_Prueba;
     [SerializeField] Vector3 posicion;
     [SerializeField] Vector3 lados;
     [SerializeField] accion reaccion;
@@ -34,7 +35,7 @@ public class Plataforma_Mov2 : MonoBehaviour
         {
             reaccion = accion.movNegativo;
         }
-        if (reaccion == accion.movNegativo && distancia <= rangoA+MargenError)
+        if (reaccion == accion.movNegativo && distancia <= rangoA + MargenError)
         {
             reaccion = accion.movLadoNeg;
             rangoD = transform.position;
@@ -82,6 +83,7 @@ public class Plataforma_Mov2 : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             jugador.gameObject.transform.SetParent(transform);
+            jugador_Prueba.gameObject.transform.SetParent(transform);
         }
     }
     private void OnCollisionExit(Collision collision)
@@ -89,6 +91,7 @@ public class Plataforma_Mov2 : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             jugador.gameObject.transform.SetParent(null);
+            jugador_Prueba.gameObject.transform.SetParent(null);
         }
     }
 }
